@@ -1,0 +1,14 @@
+{
+  "name": "blog-to-site",
+  "version": "1.0.0",
+  "description": "네이버 블로그 크롤링 → 홈페이지 자동 생성 도구",
+  "scripts": {
+    "start": "node run.js",
+    "crawl": "node crawl.js",
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "puppeteer": "^24.0.0",
+    "cheerio": "^1.0.0"
+  }
+}
