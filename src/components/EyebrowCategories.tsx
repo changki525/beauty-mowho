@@ -3,7 +3,17 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 
-const categories = [
+interface Category {
+  num: string;
+  title: string;
+  en: string;
+  image?: string;
+  video?: string;
+  desc: string;
+  detail: string;
+}
+
+const categories: Category[] = [
   {
     num: '01',
     title: '콤보기법',
@@ -38,17 +48,14 @@ const categories = [
   },
 ];
 
-function MediaCard({ cat }: { cat: typeof categories[number] }) {
+function MediaCard({ cat }: { cat: Category }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const hasVideo = 'video' in cat && cat.video;
-  const hasImage = 'image' in cat && cat.image;
 
   return (
     <div style={{ overflow: 'hidden', aspectRatio: '3/4', position: 'relative' }}>
-      {hasImage && !('video' in cat && cat.video && !('image' in cat && cat.image)) ? (
+      {cat.image ? (
         <img
-          src={(cat as { image: string }).image}
+          src={cat.image}
           alt={cat.title}
           loading="lazy"
           style={{
@@ -60,7 +67,7 @@ function MediaCard({ cat }: { cat: typeof categories[number] }) {
           onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
           onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
         />
-      ) : hasVideo ? (
+      ) : cat.video ? (
         <video
           ref={videoRef}
           src={cat.video}
@@ -72,25 +79,9 @@ function MediaCard({ cat }: { cat: typeof categories[number] }) {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            transition: 'transform 0.5s var(--ease)',
           }}
         />
       ) : null}
-      {hasVideo && hasImage && (
-        <div style={{
-          position: 'absolute',
-          bottom: 12,
-          right: 12,
-          background: 'rgba(0,0,0,0.5)',
-          color: '#fff',
-          fontSize: '0.65rem',
-          padding: '4px 10px',
-          letterSpacing: 1,
-          borderRadius: 2,
-        }}>
-          VIDEO
-        </div>
-      )}
     </div>
   );
 }
