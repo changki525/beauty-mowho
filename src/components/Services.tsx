@@ -1,170 +1,262 @@
-"use client";
+'use client';
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const services = [
+interface Service {
+  id: string;
+  tab: string;
+  ko: string;
+  video?: string;
+  image?: string;
+  headline: string;
+  desc: string;
+  features: string[];
+}
+
+const services: Service[] = [
   {
-    number: "01",
-    title: "랜딩페이지",
-    description: "전환율을 극대화하는 강력한 원페이지. 방문자를 고객으로 만듭니다.",
-    features: ["전환 최적화", "A/B 테스트", "빠른 로딩"],
+    id: 'eyebrow',
+    tab: 'Eyebrow',
+    ko: '눈썹',
+    video: '/images/diamond-feathering-eyebrow.mp4',
+    headline: 'Diamond\nFeathering',
+    desc: '한 올 한 올 자연스러운 결을 살리는\n다이아페더링·콤보 눈썹 맞춤 디자인',
+    features: ['탈각 과정 없음', '당일 세안 가능', '1:1 맞춤 디자인'],
   },
   {
-    number: "02",
-    title: "기업 홈페이지",
-    description: "브랜드의 신뢰도를 높이는 프리미엄 기업 웹사이트.",
-    features: ["반응형 디자인", "SEO 최적화", "관리자 페이지"],
+    id: 'lip',
+    tab: 'Lip',
+    ko: '입술',
+    video: '/images/lip-touch-video.mp4',
+    headline: 'Waterful\nSyrup Lip',
+    desc: '워터풀시럽립 기법으로\n맑고 화사한 입술 톤업',
+    features: ['자연스러운 발색', '통증 최소화', '촉촉한 마무리'],
   },
   {
-    number: "03",
-    title: "포트폴리오",
-    description: "당신의 작업을 가장 돋보이게 하는 쇼케이스 사이트.",
-    features: ["갤러리 시스템", "프로젝트 관리", "인터랙티브 UI"],
-  },
-  {
-    number: "04",
-    title: "쇼핑몰",
-    description: "매출을 만드는 이커머스 솔루션. 결제부터 배송까지.",
-    features: ["결제 연동", "재고 관리", "주문 시스템"],
-  },
-  {
-    number: "05",
-    title: "예약 시스템",
-    description: "병원, 미용실, 레스토랑 등 예약이 필요한 모든 비즈니스.",
-    features: ["실시간 예약", "알림 발송", "일정 관리"],
-  },
-  {
-    number: "06",
-    title: "블로그 / 매거진",
-    description: "콘텐츠 마케팅을 위한 SEO 최적화된 블로그 플랫폼.",
-    features: ["CMS 연동", "SEO 최적화", "뉴스레터"],
+    id: 'eyeliner',
+    tab: 'Eyeliner',
+    ko: '아이라인',
+    video: '/images/eyeliner-video.mp4',
+    headline: 'Natural\nEyeliner',
+    desc: '붓기·통증 없이\n청순하고 또렷한 눈매 완성',
+    features: ['무붓기 시술', '자연스러운 라인', '또렷한 눈매'],
   },
 ];
 
 export default function Services() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [active, setActive] = useState(0);
+  const current = services[active];
 
   return (
-    <section
-      ref={sectionRef}
-      id="services"
-      style={{
-        position: 'relative',
-        padding: '128px 0',
-        overflow: 'hidden',
-        backgroundColor: '#000',
-      }}
-    >
-      {/* Background */}
-      <div className="grid-pattern" style={{ position: 'absolute', inset: 0, opacity: 0.3 }} />
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: 0,
-        width: '50%',
-        height: '400px',
-        background: 'rgba(57, 255, 20, 0.05)',
-        borderRadius: '50%',
-        filter: 'blur(150px)',
-      }} />
-
-      <div style={{ position: 'relative', zIndex: 10, maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
-        {/* Section Header */}
+    <section id="services" style={{ height: '100vh', position: 'relative', overflow: 'hidden', background: 'var(--bg-dark)' }}>
+      {/* Background images */}
+      <AnimatePresence mode="wait">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          style={{ textAlign: 'center', marginBottom: '80px' }}
+          key={current.id}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={{ position: 'absolute', inset: 0 }}
         >
-          <span style={{ color: '#39FF14', fontSize: '14px', fontWeight: '500', textTransform: 'uppercase', letterSpacing: '2px' }}>
-            Services
-          </span>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 'bold', marginTop: '16px', color: '#fff' }}>
-            무엇이든 만들어 드립니다
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '18px', marginTop: '24px', maxWidth: '640px', marginLeft: 'auto', marginRight: 'auto' }}>
-            비즈니스 목표에 맞는 최적의 웹사이트를 제작합니다.
-            <br />
-            모든 사이트는 SEO 최적화와 반응형 디자인이 기본입니다.
-          </p>
-        </motion.div>
-
-        {/* Services Grid - 6 items, 3 columns */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '24px',
-        }} className="services-grid">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.number}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="card-hover"
+          {current.video ? (
+            <video
+              src={current.video}
+              autoPlay
+              loop
+              muted
+              playsInline
               style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                ...(current.id === 'lip' ? { objectPosition: '50% 70%' } : {}),
+              }}
+            />
+          ) : (
+            <img
+              src={current.image}
+              alt={current.ko}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                ...(current.id === 'eyeliner' ? { transform: 'scale(1.8)', objectPosition: '50% 30%' } : {}),
+              }}
+            />
+          )}
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.5) 100%)',
+          }} />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0 48px', maxWidth: 1400, margin: '0 auto' }}
+        className="services-content"
+      >
+        {/* Tab buttons */}
+        <div style={{ display: 'flex', gap: 0, marginBottom: 60 }} className="services-tabs">
+          {services.map((s, i) => (
+            <button
+              key={s.id}
+              onClick={() => setActive(i)}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '12px 32px',
                 position: 'relative',
-                padding: '32px',
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%)',
-                border: '1px solid rgba(255,255,255,0.05)',
-                borderRadius: '16px',
-                overflow: 'hidden',
+                transition: 'all 0.4s var(--ease)',
               }}
             >
-              {/* Number */}
               <span style={{
-                position: 'absolute',
-                top: '24px',
-                right: '24px',
-                fontSize: '48px',
-                fontWeight: 'bold',
-                color: 'rgba(57, 255, 20, 0.1)',
+                fontSize: '0.65rem',
+                letterSpacing: 4,
+                textTransform: 'uppercase',
+                color: active === i ? '#fff' : 'rgba(255,255,255,0.35)',
+                transition: 'color 0.4s',
+                fontFamily: 'var(--sans)',
+                fontWeight: active === i ? 500 : 300,
               }}>
-                {service.number}
+                {s.tab}
               </span>
-
-              {/* Content */}
-              <div style={{ position: 'relative', zIndex: 10 }}>
-                <h3 style={{ fontSize: '22px', fontWeight: 'bold', marginBottom: '12px', color: '#fff' }}>
-                  {service.title}
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.5)', marginBottom: '20px', fontSize: '15px', lineHeight: 1.6 }}>{service.description}</p>
-
-                {/* Features */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                  {service.features.map((feature) => (
-                    <span
-                      key={feature}
-                      style={{
-                        padding: '6px 12px',
-                        background: 'rgba(57, 255, 20, 0.1)',
-                        border: '1px solid rgba(57, 255, 20, 0.2)',
-                        borderRadius: '9999px',
-                        fontSize: '12px',
-                        color: '#39FF14',
-                      }}
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+              <span style={{
+                display: 'block',
+                fontSize: '0.6rem',
+                letterSpacing: 2,
+                color: active === i ? 'var(--accent-light)' : 'rgba(255,255,255,0.2)',
+                marginTop: 4,
+                transition: 'color 0.4s',
+              }}>
+                {s.ko}
+              </span>
+              {/* Active indicator */}
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: active === i ? '100%' : 0,
+                height: 1,
+                background: 'var(--accent-light)',
+                transition: 'width 0.4s var(--ease)',
+              }} />
+            </button>
           ))}
+        </div>
+
+        {/* Main content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p style={{
+              fontSize: '0.65rem',
+              letterSpacing: 5,
+              textTransform: 'uppercase',
+              color: 'var(--accent-light)',
+              marginBottom: 20,
+              fontWeight: 400,
+            }}>
+              Our Services
+            </p>
+
+            <h2 style={{
+              fontFamily: 'var(--serif)',
+              fontSize: 'clamp(2.8rem, 6vw, 5rem)',
+              fontWeight: 300,
+              letterSpacing: 4,
+              lineHeight: 1.15,
+              color: '#fff',
+              whiteSpace: 'pre-line',
+              marginBottom: 32,
+            }}>
+              {current.headline}
+            </h2>
+
+            <p style={{
+              fontSize: '0.95rem',
+              color: 'rgba(255,255,255,0.6)',
+              lineHeight: 2,
+              whiteSpace: 'pre-line',
+              marginBottom: 40,
+              maxWidth: 420,
+              fontWeight: 300,
+            }}>
+              {current.desc}
+            </p>
+
+            {/* Feature tags */}
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }} className="services-features">
+              {current.features.map((f) => (
+                <span
+                  key={f}
+                  style={{
+                    padding: '8px 20px',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    fontSize: '0.72rem',
+                    letterSpacing: 2,
+                    color: 'rgba(255,255,255,0.7)',
+                    fontWeight: 300,
+                  }}
+                >
+                  {f}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom: service number indicator */}
+        <div style={{
+          position: 'absolute',
+          bottom: 48,
+          right: 48,
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: 8,
+          color: 'rgba(255,255,255,0.2)',
+        }}
+          className="services-indicator"
+        >
+          <span style={{ fontFamily: 'var(--serif)', fontSize: '3rem', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}>
+            {String(active + 1).padStart(2, '0')}
+          </span>
+          <span style={{ fontSize: '0.75rem', letterSpacing: 2 }}>/</span>
+          <span style={{ fontSize: '0.75rem', letterSpacing: 2 }}>
+            {String(services.length).padStart(2, '0')}
+          </span>
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .services-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .services-content {
+            padding: 0 20px !important;
           }
-        }
-        @media (max-width: 640px) {
-          .services-grid {
-            grid-template-columns: 1fr !important;
+          .services-tabs {
+            margin-bottom: 40px !important;
+          }
+          .services-tabs button {
+            padding: 12px 20px !important;
+          }
+          .services-features {
+            gap: 8px !important;
+          }
+          .services-features span {
+            padding: 6px 14px !important;
+            font-size: 0.65rem !important;
+          }
+          .services-indicator {
+            bottom: 24px !important;
+            right: 20px !important;
           }
         }
       `}</style>

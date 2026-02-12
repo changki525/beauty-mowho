@@ -1,178 +1,95 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const navItems = [
-  { name: "서비스", href: "#services" },
-  { name: "포트폴리오", href: "#portfolio" },
-  { name: "가격", href: "#pricing" },
-  { name: "문의", href: "#contact" },
+  { name: 'Services', href: '#services' },
+  { name: 'Gallery', href: '#gallery' },
+  { name: 'Journal', href: '#journal' },
 ];
 
 export default function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setMenuOpen(false);
+  };
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 50,
-          transition: 'all 0.3s',
-          backgroundColor: isScrolled ? 'rgba(0,0,0,0.8)' : 'transparent',
-          backdropFilter: isScrolled ? 'blur(20px)' : 'none',
-          borderBottom: isScrolled ? '1px solid rgba(255,255,255,0.05)' : 'none',
-        }}
-      >
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '80px' }}>
-            {/* Logo */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-              <div style={{
-                width: '32px',
-                height: '32px',
-                backgroundColor: '#39FF14',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-                <span style={{ color: '#000', fontWeight: 'bold', fontSize: '18px' }}>F</span>
-              </div>
-              <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#fff', letterSpacing: '-0.5px' }}>freemaker</span>
-            </Link>
+      <header style={{
+        position: 'fixed', top: 0, width: '100%', zIndex: 100,
+        padding: scrolled ? '16px 48px' : '24px 48px',
+        background: scrolled ? 'rgba(255,255,255,0.98)' : 'transparent',
+        borderBottom: scrolled ? '1px solid var(--border)' : 'none',
+        transition: 'all 0.4s var(--ease)',
+      }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{
+            fontFamily: 'var(--serif)', fontSize: '1.6rem', fontWeight: 300,
+            letterSpacing: 4, textTransform: 'uppercase' as const,
+            color: scrolled ? 'var(--text-primary)' : '#fff', transition: 'color 0.3s',
+          }}>
+            beauty mowho
+          </a>
 
-            {/* Desktop Nav */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="hidden md:flex">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  style={{
-                    fontSize: '14px',
-                    color: 'rgba(255,255,255,0.6)',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = '#fff'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255,255,255,0.6)'}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <Link href="#pricing" className="btn-primary" style={{ fontSize: '14px', padding: '12px 24px' }}>
-                무료로 시작하기
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden"
-              style={{
-                width: '40px',
-                height: '40px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
+          <nav style={{ display: 'flex', gap: 36, alignItems: 'center' }} className="hidden md:flex">
+            {navItems.map((item) => (
+              <a key={item.name} href={item.href} onClick={(e) => handleClick(e, item.href)} style={{
+                fontSize: '0.75rem', fontWeight: 400, letterSpacing: 2,
+                textTransform: 'uppercase' as const,
+                color: scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.7)',
+                transition: 'color 0.3s',
               }}
-            >
-              <motion.span
-                animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-                style={{ width: '24px', height: '2px', backgroundColor: '#fff', display: 'block' }}
-              />
-              <motion.span
-                animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                style={{ width: '24px', height: '2px', backgroundColor: '#fff', display: 'block' }}
-              />
-              <motion.span
-                animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-                style={{ width: '24px', height: '2px', backgroundColor: '#fff', display: 'block' }}
-              />
-            </button>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 40,
-              backgroundColor: 'rgba(0,0,0,0.95)',
-              backdropFilter: 'blur(20px)',
-              paddingTop: '96px',
-              paddingLeft: '24px',
-              paddingRight: '24px',
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = scrolled ? 'var(--text-secondary)' : 'rgba(255,255,255,0.7)'}
+              >{item.name}</a>
+            ))}
+            <a href="#contact" onClick={(e) => handleClick(e, '#contact')} style={{
+              padding: '10px 28px',
+              border: scrolled ? '1px solid var(--text-primary)' : '1px solid rgba(255,255,255,0.5)',
+              fontSize: '0.7rem', letterSpacing: 2, textTransform: 'uppercase' as const,
+              color: scrolled ? 'var(--text-primary)' : '#fff', transition: 'all 0.4s var(--ease)',
             }}
-            className="md:hidden"
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    style={{
-                      fontSize: '28px',
-                      fontWeight: '500',
-                      color: '#fff',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Link
-                  href="#pricing"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="btn-primary"
-                  style={{ display: 'inline-block', marginTop: '16px', textAlign: 'center' }}
-                >
-                  무료로 시작하기
-                </Link>
-              </motion.div>
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = scrolled ? 'var(--text-primary)' : '#fff';
+              e.currentTarget.style.color = scrolled ? '#fff' : 'var(--text-primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = scrolled ? 'var(--text-primary)' : '#fff';
+            }}
+            >Contact</a>
+          </nav>
+
+          <button className="md:hidden block" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8 }} aria-label="메뉴">
+            <div style={{ width: 24, display: 'flex', flexDirection: 'column', gap: menuOpen ? 0 : 5 }}>
+              <span style={{ display: 'block', width: 24, height: 1, background: scrolled ? 'var(--text-primary)' : '#fff', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translateY(0.5px)' : 'none' }} />
+              <span style={{ display: 'block', width: 24, height: 1, background: scrolled ? 'var(--text-primary)' : '#fff', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
+              <span style={{ display: 'block', width: 24, height: 1, background: scrolled ? 'var(--text-primary)' : '#fff', transition: 'all 0.3s', transform: menuOpen ? 'rotate(-45deg) translateY(-0.5px)' : 'none' }} />
             </div>
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}
+            style={{ position: 'fixed', top: 70, left: 0, right: 0, background: 'rgba(255,255,255,0.98)', zIndex: 99, padding: '32px 20px', borderBottom: '1px solid var(--border)', display: 'flex', flexDirection: 'column', gap: 24, alignItems: 'center' }}>
+            {navItems.map((item) => (
+              <a key={item.name} href={item.href} onClick={(e) => handleClick(e, item.href)} style={{ fontSize: '0.85rem', fontWeight: 400, letterSpacing: 2, textTransform: 'uppercase' as const, color: 'var(--text-secondary)' }}>{item.name}</a>
+            ))}
+            <a href="#contact" onClick={(e) => handleClick(e, '#contact')} style={{ padding: '10px 28px', border: '1px solid var(--text-primary)', fontSize: '0.7rem', letterSpacing: 2, textTransform: 'uppercase' as const, color: 'var(--text-primary)' }}>Contact</a>
           </motion.div>
         )}
       </AnimatePresence>
