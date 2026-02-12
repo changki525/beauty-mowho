@@ -98,52 +98,57 @@ export default function Services() {
         className="services-content"
       >
         {/* Tab buttons */}
-        <div style={{ display: 'flex', gap: 0, marginBottom: 60 }} className="services-tabs">
+        <div style={{ display: 'flex', gap: 12, marginBottom: 60 }} className="services-tabs">
           {services.map((s, i) => (
             <button
               key={s.id}
               onClick={() => setActive(i)}
               style={{
-                background: 'none',
-                border: 'none',
+                background: active === i ? 'rgba(196,168,130,0.2)' : 'rgba(255,255,255,0.08)',
+                border: active === i ? '1.5px solid var(--accent-light)' : '1.5px solid rgba(255,255,255,0.2)',
+                borderRadius: 40,
                 cursor: 'pointer',
-                padding: '12px 32px',
+                padding: '16px 36px',
                 position: 'relative',
                 transition: 'all 0.4s var(--ease)',
+                backdropFilter: 'blur(8px)',
+              }}
+              onMouseEnter={(e) => {
+                if (active !== i) {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (active !== i) {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)';
+                }
               }}
             >
               <span style={{
-                fontSize: '0.65rem',
-                letterSpacing: 4,
+                fontSize: '0.9rem',
+                letterSpacing: 3,
                 textTransform: 'uppercase',
-                color: active === i ? '#fff' : 'rgba(255,255,255,0.35)',
+                color: active === i ? '#fff' : 'rgba(255,255,255,0.6)',
                 transition: 'color 0.4s',
                 fontFamily: 'var(--sans)',
-                fontWeight: active === i ? 500 : 300,
+                fontWeight: active === i ? 600 : 400,
+                display: 'block',
               }}>
                 {s.tab}
               </span>
               <span style={{
                 display: 'block',
-                fontSize: '0.6rem',
+                fontSize: '0.75rem',
                 letterSpacing: 2,
-                color: active === i ? 'var(--accent-light)' : 'rgba(255,255,255,0.2)',
-                marginTop: 4,
+                color: active === i ? 'var(--accent-light)' : 'rgba(255,255,255,0.4)',
+                marginTop: 6,
                 transition: 'color 0.4s',
+                fontWeight: active === i ? 500 : 300,
               }}>
                 {s.ko}
               </span>
-              {/* Active indicator */}
-              <div style={{
-                position: 'absolute',
-                bottom: 0,
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: active === i ? '100%' : 0,
-                height: 1,
-                background: 'var(--accent-light)',
-                transition: 'width 0.4s var(--ease)',
-              }} />
             </button>
           ))}
         </div>
@@ -245,7 +250,10 @@ export default function Services() {
             margin-bottom: 40px !important;
           }
           .services-tabs button {
-            padding: 12px 20px !important;
+            padding: 14px 24px !important;
+          }
+          .services-tabs button span:first-child {
+            font-size: 0.82rem !important;
           }
           .services-features {
             gap: 8px !important;

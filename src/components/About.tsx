@@ -43,7 +43,7 @@ export default function About() {
               피부 표면에 미세한 다이아몬드 패턴으로 색소를 주입하여 마치 실제 눈썹처럼 자연스러운 결과를 만들어냅니다. 미대 출신 원장이 고객의 얼굴형, 이미지, 피부톤을 정밀 분석하여 1:1 맞춤 디자인을 제공합니다.
             </p>
 
-            <div style={{ marginTop: 40, paddingTop: 40, borderTop: '1px solid var(--border)', display: 'flex', gap: 48 }}>
+            <div className="about-stats" style={{ marginTop: 40, paddingTop: 40, borderTop: '1px solid var(--border)', display: 'flex', gap: 48 }}>
               {[
                 { num: 'No', label: '탈각 과정 없음' },
                 { num: 'Day 1', label: '당일 세안 가능' },
@@ -61,6 +61,12 @@ export default function About() {
         <style jsx global>{`
           @media (max-width: 1024px) {
             .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          }
+          @media (max-width: 480px) {
+            .about-stats {
+              gap: 24px !important;
+              flex-wrap: wrap !important;
+            }
           }
         `}</style>
       </div>

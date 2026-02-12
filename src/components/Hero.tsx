@@ -28,20 +28,21 @@ export default function Hero() {
         <p style={{ fontSize: '0.95rem', fontWeight: 200, letterSpacing: 3, color: 'rgba(255,255,255,0.6)', marginBottom: 48 }}>
           미대출신 원장의 섬세한 맞춤 디자인
         </p>
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'nowrap' }}>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }} className="hero-buttons">
           {buttons.map((btn) => (
             <a key={btn.label} href={btn.href} target={btn.href.startsWith('tel') ? undefined : '_blank'} rel={btn.href.startsWith('tel') ? undefined : 'noopener noreferrer'}
+              className="hero-btn"
               style={{
-                display: 'inline-flex', alignItems: 'center', gap: 12, padding: '20px 48px',
+                display: 'inline-flex', alignItems: 'center', gap: 10, padding: '16px 32px',
                 border: btn.primary ? '1px solid var(--accent)' : '1px solid rgba(255,255,255,0.4)',
                 background: btn.primary ? 'var(--accent)' : 'transparent',
-                fontSize: '1rem', letterSpacing: 2, textTransform: 'uppercase', color: '#fff', whiteSpace: 'nowrap' as const,
+                fontSize: '0.85rem', letterSpacing: 2, textTransform: 'uppercase', color: '#fff', whiteSpace: 'nowrap' as const,
                 transition: 'all 0.4s var(--ease)', fontFamily: 'var(--sans)', fontWeight: 400,
               }}
               onMouseEnter={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = btn.primary ? 'var(--accent)' : 'var(--bg-dark)'; if (btn.primary) e.currentTarget.style.borderColor = '#fff'; }}
               onMouseLeave={(e) => { e.currentTarget.style.background = btn.primary ? 'var(--accent)' : 'transparent'; e.currentTarget.style.color = '#fff'; if (btn.primary) e.currentTarget.style.borderColor = 'var(--accent)'; }}
             >
-              <svg viewBox="0 0 24 24" style={{ width: 20, height: 20, fill: 'currentColor', flexShrink: 0 }}><path d={btn.icon} /></svg>
+              <svg viewBox="0 0 24 24" style={{ width: 18, height: 18, fill: 'currentColor', flexShrink: 0 }}><path d={btn.icon} /></svg>
               {btn.label}
             </a>
           ))}
@@ -51,6 +52,33 @@ export default function Hero() {
       <div style={{ position: 'absolute', bottom: 40, left: '50%', width: 1, height: 60, background: 'rgba(255,255,255,0.2)' }}>
         <div style={{ position: 'absolute', top: 0, width: 1, height: 20, background: 'rgba(255,255,255,0.8)', animation: 'scrollDown 2s infinite' }} />
       </div>
+
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .hero-buttons {
+            gap: 8px !important;
+          }
+          .hero-btn {
+            padding: 12px 16px !important;
+            font-size: 0.72rem !important;
+            gap: 6px !important;
+            letter-spacing: 1px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-buttons {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            width: 100% !important;
+          }
+          .hero-btn {
+            justify-content: center !important;
+            padding: 12px 8px !important;
+            font-size: 0.68rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

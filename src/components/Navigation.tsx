@@ -27,7 +27,7 @@ export default function Navigation() {
 
   return (
     <>
-      <header style={{
+      <header className="nav-header" style={{
         position: 'fixed', top: 0, width: '100%', zIndex: 100,
         padding: scrolled ? '16px 48px' : '24px 48px',
         background: scrolled ? 'rgba(255,255,255,0.98)' : 'transparent',
@@ -93,6 +93,15 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .nav-header {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

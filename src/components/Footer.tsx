@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer style={{ padding: '48px', textAlign: 'center', borderTop: '1px solid var(--border)', background: '#fff' }}>
+    <footer style={{ padding: '48px 20px', textAlign: 'center', borderTop: '1px solid var(--border)', background: '#fff' }}>
       <p style={{ fontSize: '0.72rem', color: 'var(--text-light)', letterSpacing: 2 }}>
         &copy; 2026 beauty mowho. All Rights Reserved.
       </p>
