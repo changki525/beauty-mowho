@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', background: 'var(--bg-dark)' }}>
       <div style={{ position: 'absolute', inset: 0 }}>
-        <img src="/images/hero-bg.jpeg" alt="beauty mowho" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.2)' }} />
+        <img src="/images/hero-bg.jpeg" alt="beauty mowho" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.5)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)' }} />
       </div>
 
