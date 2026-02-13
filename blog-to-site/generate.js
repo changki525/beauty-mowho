@@ -229,8 +229,8 @@ function generateHTML(data, urlMap = {}) {
     /* Hero */
     .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: var(--bg-dark); }
     .hero-bg { position: absolute; inset: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-    .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.2); }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0); }
     .hero-content { position: relative; z-index: 2; text-align: center; color: #fff; max-width: 800px; padding: 0 24px; }
     .hero-label { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
     .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; letter-spacing: 8px; line-height: 1.1; text-transform: uppercase; margin-bottom: 24px; }
