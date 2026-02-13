@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', background: 'var(--bg-dark)' }}>
       <div style={{ position: 'absolute', inset: 0 }}>
-        <img src="/images/hero-bg.jpeg" alt="beauty mowho" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.5)' }} />
+        <img src="/images/hero-bg.jpeg" alt="beauty mowho" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.3)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)' }} />
       </div>
 
@@ -28,52 +28,6 @@ export default function Hero() {
         <p style={{ fontSize: '0.95rem', fontWeight: 200, letterSpacing: 3, color: 'rgba(255,255,255,0.6)', marginBottom: 48 }}>
           미대출신 원장의 섬세한 맞춤 디자인
         </p>
-        {/* Service shortcut buttons */}
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', marginBottom: 36 }} className="service-shortcuts">
-          {[
-            { label: 'Eyebrow', ko: '눈썹', index: 0 },
-            { label: 'Lip', ko: '입술', index: 1 },
-            { label: 'Eyeliner', ko: '아이라인', index: 2 },
-          ].map((item) => (
-            <button
-              key={item.label}
-              className="service-shortcut-btn"
-              onClick={() => {
-                window.dispatchEvent(new CustomEvent('selectService', { detail: item.index }));
-                document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }}
-              style={{
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.3)',
-                borderRadius: 40,
-                padding: '14px 32px',
-                cursor: 'pointer',
-                transition: 'all 0.4s var(--ease)',
-                backdropFilter: 'blur(8px)',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 4,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(196,168,130,0.3)';
-                e.currentTarget.style.borderColor = 'var(--accent-light)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
-              }}
-            >
-              <span style={{ fontSize: '0.85rem', letterSpacing: 3, textTransform: 'uppercase', color: '#fff', fontWeight: 500 }}>
-                {item.label}
-              </span>
-              <span style={{ fontSize: '0.7rem', letterSpacing: 2, color: 'var(--accent-light)', fontWeight: 300 }}>
-                {item.ko}
-              </span>
-            </button>
-          ))}
-        </div>
-
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }} className="hero-buttons">
           {buttons.map((btn) => (
             <a key={btn.label} href={btn.href} target={btn.href.startsWith('tel') ? undefined : '_blank'} rel={btn.href.startsWith('tel') ? undefined : 'noopener noreferrer'}
@@ -101,16 +55,7 @@ export default function Hero() {
 
       <style jsx global>{`
         @media (max-width: 768px) {
-          .service-shortcuts {
-            gap: 10px !important;
-          }
-          .service-shortcut-btn {
-            padding: 10px 20px !important;
-          }
-          .service-shortcut-btn span:first-child {
-            font-size: 0.75rem !important;
-          }
-          .hero-buttons {
+.hero-buttons {
             gap: 8px !important;
           }
           .hero-btn {
