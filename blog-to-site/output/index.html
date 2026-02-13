@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <title>beauty mowho | 세종 반영구 화장 전문 - 눈썹·입술·아이라인</title>
-  <meta name="description" content="세종시 반영구 화장 전문 beauty mowho. 미대출신 원장의 1:1 맞춤 디자인. 다이아페더링 눈썹, 워터풀시럽립 입술, 아이라인 시술. 세종특별자치시 다솜1로 21.">
+  <meta name="description" content="세종시 반영구 화장 전문 beauty mowho. 미대출신 원장의 1:1 맞춤 디자인. 다이아페더링 눈썹, 워터풀시럽립 입술, 아이라인 시술. 세종특별자치시 다솜1로 21 상가 2층 242, 243호.">
   <meta name="keywords" content="세종 반영구, 세종 눈썹문신, 세종시 반영구화장, 세종 입술문신, 세종 아이라인문신, 다이아페더링, 뷰티모후, beauty mowho, 세종시 눈썹, 반영구 눈썹, 세종 반영구 잘하는곳, 눈썹문신, 눈썹문신 잘하는곳, 세종시 눈썹문신, 반영구 눈썹문신">
   <meta property="og:type" content="website">
   <meta property="og:title" content="beauty mowho | 세종 반영구 화장 전문">
@@ -51,15 +51,17 @@
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { font-family: var(--sans); color: var(--text-primary); background: var(--bg); line-height: 1.8; overflow-x: hidden; font-weight: 300; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; height: auto; display: block; }
+    ::selection { background: var(--accent); color: #fff; }
 
     /* Header */
     header { position: fixed; top: 0; width: 100%; z-index: 100; padding: 24px 48px; transition: all 0.4s var(--ease); }
     header.scrolled { background: rgba(255,255,255,0.98); padding: 16px 48px; border-bottom: 1px solid var(--border); }
     .header-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; }
+    .logo { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; }
     header:not(.scrolled) .logo { color: #fff; }
     nav { display: flex; gap: 36px; align-items: center; }
     nav a { font-size: 0.75rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary); transition: color 0.3s; }
@@ -79,9 +81,17 @@
     .hero-label { font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
     .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 8vw, 6rem); font-weight: 300; letter-spacing: 8px; line-height: 1.1; text-transform: uppercase; margin-bottom: 24px; }
     .hero-sub { font-size: 0.95rem; font-weight: 200; letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-bottom: 48px; }
-    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; border: 1px solid rgba(255,255,255,0.4); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; transition: all 0.4s var(--ease); font-family: var(--sans); font-weight: 400; }
-    .hero-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    /* Service shortcut buttons */
+    .service-shortcuts { display: flex; gap: 16px; justify-content: center; margin-bottom: 36px; }
+    .service-shortcut-btn { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.3); border-radius: 40px; padding: 14px 32px; cursor: pointer; transition: all 0.4s var(--ease); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: inherit; }
+    .service-shortcut-btn:hover { background: rgba(196,168,130,0.3); border-color: var(--accent-light); }
+    .service-shortcut-btn .en { font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; color: #fff; font-weight: 500; }
+    .service-shortcut-btn .ko { font-size: 0.7rem; letter-spacing: 2px; color: var(--accent-light); font-weight: 300; }
+
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .hero-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border: 1px solid rgba(255,255,255,0.4); font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; transition: all 0.4s var(--ease); font-family: var(--sans); font-weight: 400; white-space: nowrap; }
+    .hero-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
     .hero-btn:hover { background: #fff; color: var(--bg-dark); }
     .hero-btn.primary { background: var(--accent); border-color: var(--accent); }
     .hero-btn.primary:hover { background: #fff; color: var(--accent); border-color: #fff; }
@@ -89,37 +99,65 @@
     .scroll-line::after { content: ''; position: absolute; top: 0; width: 1px; height: 20px; background: rgba(255,255,255,0.8); animation: scrollDown 2s infinite; }
     @keyframes scrollDown { 0% { top: 0; opacity: 1; } 100% { top: 40px; opacity: 0; } }
 
+    /* Services - Full screen tab section */
+    .services-section { height: 100vh; position: relative; overflow: hidden; background: var(--bg-dark); }
+    .services-bg { position: absolute; inset: 0; transition: opacity 0.8s var(--ease); }
+    .services-bg video, .services-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .services-bg .overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.5) 100%); }
+    .services-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 48px; max-width: 1400px; margin: 0 auto; }
+
+    /* Tab buttons */
+    .services-tabs { display: flex; gap: 12px; margin-bottom: 60px; }
+    .services-tab { background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.2); border-radius: 40px; cursor: pointer; padding: 16px 36px; position: relative; transition: all 0.4s var(--ease); backdrop-filter: blur(8px); }
+    .services-tab:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+    .services-tab.active { background: rgba(196,168,130,0.2); border-color: var(--accent-light); }
+    .services-tab .tab-en { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); transition: color 0.4s; font-family: var(--sans); font-weight: 400; display: block; }
+    .services-tab.active .tab-en { color: #fff; font-weight: 600; }
+    .services-tab .tab-ko { display: block; font-size: 0.75rem; letter-spacing: 2px; color: rgba(255,255,255,0.4); margin-top: 6px; transition: color 0.4s; font-weight: 300; }
+    .services-tab.active .tab-ko { color: var(--accent-light); font-weight: 500; }
+
+    .services-label { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 20px; font-weight: 400; }
+    .services-headline { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; letter-spacing: 4px; line-height: 1.15; color: #fff; white-space: pre-line; margin-bottom: 32px; }
+    .services-desc { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 2; white-space: pre-line; margin-bottom: 40px; max-width: 420px; font-weight: 300; }
+    .services-features { display: flex; gap: 16px; flex-wrap: wrap; }
+    .services-features span { padding: 8px 20px; border: 1px solid rgba(255,255,255,0.2); font-size: 0.72rem; letter-spacing: 2px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .services-indicator { position: absolute; bottom: 48px; right: 48px; display: flex; align-items: baseline; gap: 8px; color: rgba(255,255,255,0.2); }
+    .services-indicator .num { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: rgba(255,255,255,0.6); }
+    .services-indicator .sep, .services-indicator .total { font-size: 0.75rem; letter-spacing: 2px; }
+
     /* Section Common */
-    .section { padding: 140px 48px; content-visibility: auto; contain-intrinsic-size: auto 600px; }
+    .section { padding: 140px 48px; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
     .section-header { text-align: center; margin-bottom: 80px; }
     .section-label { font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; font-weight: 500; }
     .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; letter-spacing: 3px; }
     .section-divider { width: 40px; height: 1px; background: var(--accent); margin: 24px auto 0; }
 
-    /* Services */
-    .services { background: var(--bg-warm); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .service-card { background: #fff; text-align: center; transition: transform 0.4s var(--ease); overflow: hidden; }
-    .service-card:hover { transform: translateY(-4px); }
-    .service-img { overflow: hidden; aspect-ratio: 3/4; }
-    .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
-    .service-card:hover .service-img img { transform: scale(1.03); }
-    .service-body { padding: 32px 24px; }
-    .service-name { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 6px; }
-    .service-ko { font-size: 0.72rem; letter-spacing: 3px; color: var(--text-light); text-transform: uppercase; margin-bottom: 16px; }
-    .service-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.9; }
-
     /* About */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .about-img { overflow: hidden; }
-    .about-img img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
-    .about-text .label { font-size: 0.65rem; letter-spacing: 5px; color: var(--accent); margin-bottom: 20px; font-weight: 500; }
+    .about-img video { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+    .about-text .label { font-size: 0.65rem; letter-spacing: 5px; color: var(--accent); margin-bottom: 20px; font-weight: 500; text-transform: uppercase; }
     .about-text h2 { font-family: var(--serif); font-size: 2.4rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 24px; line-height: 1.3; }
     .about-text p { font-size: 0.92rem; color: var(--text-secondary); line-height: 2; margin-bottom: 16px; }
     .about-info { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border); display: flex; gap: 48px; }
     .about-info-item .num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--accent); }
     .about-info-item .label2 { font-size: 0.7rem; letter-spacing: 2px; color: var(--text-light); margin-top: 4px; }
+
+    /* Eyebrow Categories */
+    .eyebrow-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .eyebrow-card { border: 1px solid var(--border); transition: all 0.4s var(--ease); overflow: hidden; background: #fff; }
+    .eyebrow-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .eyebrow-card .media { overflow: hidden; aspect-ratio: 3/4; }
+    .eyebrow-card .media img, .eyebrow-card .media video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+    .eyebrow-card:hover .media img { transform: scale(1.03); }
+    .eyebrow-card .card-body { padding: 32px 28px; position: relative; }
+    .eyebrow-card .card-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 300; color: var(--accent-light); opacity: 0.25; position: absolute; top: 20px; right: 24px; line-height: 1; }
+    .eyebrow-card .card-title { font-family: var(--sans); font-size: 1.15rem; font-weight: 500; margin-bottom: 4px; color: var(--text-primary); }
+    .eyebrow-card .card-en { font-size: 0.65rem; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; font-weight: 400; }
+    .eyebrow-card .card-line { width: 24px; height: 1px; background: var(--accent-light); margin-bottom: 16px; }
+    .eyebrow-card .card-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 8px; }
+    .eyebrow-card .card-detail { font-size: 0.75rem; color: var(--text-light); line-height: 1.7; font-style: italic; }
 
     /* Gallery */
     .gallery { background: var(--bg-dark); }
@@ -153,7 +191,7 @@
     .contact-btn:hover { background: var(--accent); transform: translateY(-2px); }
 
     /* Footer */
-    footer { padding: 48px; text-align: center; border-top: 1px solid var(--border); background: #fff; }
+    footer { padding: 48px 20px; text-align: center; border-top: 1px solid var(--border); background: #fff; }
     footer p { font-size: 0.72rem; color: var(--text-light); letter-spacing: 2px; }
     footer a { color: var(--accent); transition: color 0.3s; }
     footer a:hover { color: var(--text-primary); }
@@ -162,12 +200,19 @@
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* Mobile menu */
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; z-index: 101; }
+    .menu-toggle span { display: block; width: 24px; height: 1px; transition: all 0.3s; }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 1rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--text-primary); }
+    .mobile-menu .nav-cta { padding: 12px 32px; border: 1px solid var(--text-primary); font-size: 0.8rem; }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .section { padding: 100px 32px; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .services-grid { grid-template-columns: 1fr; gap: 16px; }
-      .service-img { aspect-ratio: 4/3; }
+      .eyebrow-grid { grid-template-columns: 1fr; }
       .posts-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
@@ -176,16 +221,76 @@
     @media (max-width: 768px) {
       header { padding: 16px 20px; }
       header.scrolled { padding: 12px 20px; }
-      nav a:not(.nav-cta) { display: none; }
+      .desktop-nav { display: none; }
+      .menu-toggle { display: block; }
       .section { padding: 80px 20px; }
       .section-header { margin-bottom: 48px; }
-      .hero h1 { letter-spacing: 4px; }
-      .hero-actions { gap: 10px; }
-      .hero-btn { padding: 12px 20px; font-size: 0.65rem; letter-spacing: 1px; }
+
+      /* Hero */
+      .hero h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); letter-spacing: 4px; }
+      .hero-label { font-size: 0.6rem; letter-spacing: 4px; }
+      .hero-sub { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 32px; }
+      .service-shortcuts { gap: 8px; }
+      .service-shortcut-btn { padding: 10px 18px; }
+      .service-shortcut-btn .en { font-size: 0.72rem; letter-spacing: 2px; }
+      .service-shortcut-btn .ko { font-size: 0.6rem; }
+      .hero-actions { gap: 8px; }
+      .hero-btn { padding: 12px 16px; font-size: 0.72rem; gap: 6px; letter-spacing: 1px; }
+      .hero-btn svg { width: 14px; height: 14px; }
+
+      /* Services */
+      .services-section { height: auto; min-height: 100vh; padding: 100px 0 80px; }
+      .services-content { padding: 0 20px !important; }
+      .services-tabs { margin-bottom: 32px; flex-wrap: wrap; }
+      .services-tab { padding: 12px 20px; }
+      .services-tab .tab-en { font-size: 0.78rem; letter-spacing: 2px; }
+      .services-tab .tab-ko { font-size: 0.65rem; margin-top: 4px; }
+      .services-headline { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: 2px; margin-bottom: 20px; }
+      .services-desc { font-size: 0.85rem; margin-bottom: 24px; }
+      .services-features { gap: 8px; }
+      .services-features span { padding: 6px 14px; font-size: 0.65rem; letter-spacing: 1px; }
+      .services-indicator { bottom: 20px; right: 20px; }
+      .services-indicator .num { font-size: 2rem; }
+
+      /* About */
+      .about-text h2 { font-size: 1.8rem; }
+      .about-info { gap: 32px; }
+
+      /* Eyebrow */
+      .eyebrow-card .media { aspect-ratio: 4/3; }
+      .eyebrow-card .card-body { padding: 24px 20px; }
+      .eyebrow-card .card-title { font-size: 1rem; }
+
+      /* Posts & Gallery */
       .posts-grid { grid-template-columns: 1fr; gap: 40px; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:first-child { grid-column: span 2; }
-      .about-info { gap: 32px; }
+
+      /* Contact */
+      .contact-btn { padding: 16px 40px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2rem; letter-spacing: 3px; }
+      .service-shortcuts { flex-direction: row; }
+      .service-shortcut-btn { padding: 8px 14px; flex: 1; }
+      .service-shortcut-btn .en { font-size: 0.65rem; letter-spacing: 1px; }
+      .service-shortcut-btn .ko { font-size: 0.55rem; }
+      .hero-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+      .hero-btn { justify-content: center; padding: 12px 8px; font-size: 0.68rem; }
+      .services-tabs { gap: 6px; }
+      .services-tab { padding: 10px 14px; }
+      .services-tab .tab-en { font-size: 0.7rem; letter-spacing: 1px; }
+      .services-tab .tab-ko { font-size: 0.6rem; }
+      .about-info { flex-wrap: wrap; gap: 24px; }
+      .about-info-item .num { font-size: 2rem; }
+      .contact-info { gap: 24px; }
+    }
+    @media (max-width: 360px) {
+      .hero h1 { font-size: 1.8rem; }
+      .service-shortcut-btn { padding: 8px 10px; }
+      .service-shortcut-btn .en { font-size: 0.6rem; }
+      .services-tab { padding: 8px 12px; }
+      .services-tab .tab-en { font-size: 0.65rem; }
     }
   </style>
 </head>
@@ -193,16 +298,27 @@
 
   <header id="header">
     <div class="header-inner">
-      <div class="logo">beauty mowho</div>
-      <nav>
+      <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">beauty mowho</div>
+      <nav class="desktop-nav">
         <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#posts">Journal</a>
+        <a href="#journal">Journal</a>
         <a href="#contact" class="nav-cta">Contact</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴" onclick="toggleMenu()">
+        <span id="bar1" style="background: #fff;"></span>
+        <span id="bar2" style="background: #fff; margin: 5px 0;"></span>
+        <span id="bar3" style="background: #fff;"></span>
+      </button>
     </div>
   </header>
 
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#journal" onclick="closeMenu()">Journal</a>
+    <a href="#contact" class="nav-cta" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-bg">
       <img src="images/hero-bg.jpeg" alt="beauty mowho" />
@@ -211,6 +327,7 @@
       <p class="hero-label">Semi-Permanent Makeup Studio</p>
       <h1>beauty mowho</h1>
       <p class="hero-sub">미대출신 원장의 섬세한 맞춤 디자인</p>
+
       <div class="hero-actions">
         <a href="tel:010-7316-7783" class="hero-btn primary">
           <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
@@ -233,50 +350,12 @@
     <div class="scroll-line"></div>
   </section>
 
-  <section class="section services" id="services">
-    <div class="section-inner">
-      <div class="section-header">
-        <p class="section-label">Our Services</p>
-        <h2 class="section-title">Artistry & Technique</h2>
-        <div class="section-divider"></div>
-      </div>
-      <div class="services-grid">
-
-        <div class="service-card reveal">
-          <div class="service-img"><img src="images/eyebrow.png" alt="눈썹" loading="lazy" decoding="async" /></div>
-          <div class="service-body">
-            <h3 class="service-name">Eyebrow</h3>
-            <p class="service-ko">눈썹</p>
-            <p class="service-desc">자연스러운 결을 살리는 다이아페더링, 콤보눈썹 등 맞춤 디자인</p>
-          </div>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-img"><img src="images/c721ce2906.jpeg" alt="입술" loading="lazy" decoding="async" /></div>
-          <div class="service-body">
-            <h3 class="service-name">Lip</h3>
-            <p class="service-ko">입술</p>
-            <p class="service-desc">워터풀시럽립 기법으로 맑고 화사한 입술 톤업</p>
-          </div>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="service-img"><img src="images/eyeliner.png" alt="아이라인" loading="lazy" decoding="async" /></div>
-          <div class="service-body">
-            <h3 class="service-name">Eyeliner</h3>
-            <p class="service-ko">아이라인</p>
-            <p class="service-desc">붓기 통증 없이 청순하고 또렷한 눈매 완성</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- About -->
   <section class="section" id="about">
     <div class="section-inner">
       <div class="about-grid">
         <div class="about-img reveal">
-          <video src="images/about-video.mp4" autoplay loop muted playsinline style="width:100%;aspect-ratio:3/4;object-fit:cover;"></video>
+          <video src="images/diamond-feathering-video.mp4" autoplay loop muted playsinline></video>
         </div>
         <div class="about-text reveal">
           <p class="label">SIGNATURE TECHNIQUE</p>
@@ -293,40 +372,108 @@
     </div>
   </section>
 
-  
-  <section class="section gallery" id="gallery">
-    <div class="section-inner">
-      <div class="section-header">
-        <p class="section-label">Portfolio</p>
-        <h2 class="section-title">Our Work</h2>
-        <div class="section-divider" style="background: var(--accent-light);"></div>
+  <!-- Services - Full screen tab section -->
+  <section class="services-section" id="services">
+    <div class="services-bg" id="services-bg">
+      <video src="images/diamond-feathering-eyebrow.mp4" autoplay loop muted playsinline id="services-video"></video>
+      <div class="overlay"></div>
+    </div>
+    <div class="services-content">
+      <div class="services-tabs">
+        <button class="services-tab active" onclick="switchService(0)">
+          <span class="tab-en">Eyebrow</span>
+          <span class="tab-ko">눈썹</span>
+        </button>
+        <button class="services-tab" onclick="switchService(1)">
+          <span class="tab-en">Lip</span>
+          <span class="tab-ko">입술</span>
+        </button>
+        <button class="services-tab" onclick="switchService(2)">
+          <span class="tab-en">Eyeliner</span>
+          <span class="tab-ko">아이라인</span>
+        </button>
       </div>
-      <div class="gallery-grid">
 
-          <div class="gallery-item reveal">
-            <img src="images/577a30e4d3.jpeg" alt="세종입술문신 통증없이 맑고 화사하게 바꾸는 워터풀시럽립 기법" loading="lazy" decoding="async" />
-          </div>
+      <div id="services-detail">
+        <p class="services-label">Our Services</p>
+        <h2 class="services-headline" id="services-headline">Diamond
+Feathering</h2>
+        <p class="services-desc" id="services-desc">한 올 한 올 자연스러운 결을 살리는
+다이아페더링·콤보 눈썹 맞춤 디자인</p>
+        <div class="services-features" id="services-features">
+          <span>탈각 과정 없음</span>
+          <span>당일 세안 가능</span>
+          <span>1:1 맞춤 디자인</span>
+        </div>
+      </div>
 
-          <div class="gallery-item reveal">
-            <img src="images/afe2193328.jpeg" alt="세종시입술문신 통증없이 잘하는 곳에서 입매교정으로 볼륨업" loading="lazy" decoding="async" />
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="images/4dd512fa9d.jpeg" alt="세종시눈썹문신 남자 세종눈썹문신 뷰티모후에서 해결하세요" loading="lazy" decoding="async" />
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="images/df21356d04.jpeg" alt="세종아이라인문신 붓기 통증 없이 청순한 눈매 완성!" loading="lazy" decoding="async" />
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="images/c4d3592cb8.jpg" alt="세종시반영구수강 미대출신 대표원장 직강, 1인샵 창업까지 한 번에 준비하기" loading="lazy" decoding="async" />
-          </div>
+      <div class="services-indicator">
+        <span class="num" id="services-num">01</span>
+        <span class="sep">/</span>
+        <span class="total">03</span>
       </div>
     </div>
   </section>
 
-  <section class="section" id="posts">
+  <!-- Eyebrow Categories / Treatment Guide -->
+  <section class="section" id="eyebrow" style="background: var(--bg);">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-label">Treatment Menu</p>
+        <h2 class="section-title">Treatment Guide</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="eyebrow-grid">
+        <div class="eyebrow-card reveal">
+          <div class="media"><img src="images/combo-technique.jpeg" alt="콤보기법" loading="lazy" decoding="async" /></div>
+          <div class="card-body">
+            <span class="card-num">01</span>
+            <h3 class="card-title">콤보기법</h3>
+            <p class="card-en">Combo Technique</p>
+            <div class="card-line"></div>
+            <p class="card-desc">자연눈썹과 메이크업의 장점을 결합한 복합 기법입니다.</p>
+            <p class="card-detail">앞머리는 자연스럽게, 꼬리는 또렷하게 입체감 있는 디자인</p>
+          </div>
+        </div>
+        <div class="eyebrow-card reveal">
+          <div class="media"><img src="images/dia-hair-technique-new.jpeg" alt="다이아헤어기법" loading="lazy" decoding="async" /></div>
+          <div class="card-body">
+            <span class="card-num">02</span>
+            <h3 class="card-title">다이아헤어기법</h3>
+            <p class="card-en">Diamond Hair Technique</p>
+            <div class="card-line"></div>
+            <p class="card-desc">다이아몬드 패턴으로 한 올 한 올 섬세하게 표현하는 프리미엄 헤어스트로크 기법입니다.</p>
+            <p class="card-detail">실제 눈썹결처럼 자연스러운 결과를 만드는 시그니처 기법</p>
+          </div>
+        </div>
+        <div class="eyebrow-card reveal">
+          <div class="media"><img src="images/makeup-technique.jpeg" alt="메이크업기법" loading="lazy" decoding="async" /></div>
+          <div class="card-body">
+            <span class="card-num">03</span>
+            <h3 class="card-title">메이크업기법</h3>
+            <p class="card-en">Makeup Technique</p>
+            <div class="card-line"></div>
+            <p class="card-desc">파우더를 바른 듯 은은하고 깔끔한 눈썹을 완성합니다.</p>
+            <p class="card-detail">매일 메이크업한 듯한 또렷하고 단정한 눈썹 표현</p>
+          </div>
+        </div>
+        <div class="eyebrow-card reveal">
+          <div class="media"><video src="images/treatment-video.mp4" autoplay loop muted playsinline></video></div>
+          <div class="card-body">
+            <span class="card-num">04</span>
+            <h3 class="card-title">시술영상</h3>
+            <p class="card-en">Treatment Video</p>
+            <div class="card-line"></div>
+            <p class="card-desc">실제 시술 과정을 영상으로 확인하실 수 있습니다.</p>
+            <p class="card-detail">섬세하고 정확한 시술 과정을 직접 확인해보세요</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Journal -->
+  <section class="section" id="journal">
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Journal</p>
@@ -334,104 +481,49 @@
         <div class="section-divider"></div>
       </div>
       <div class="posts-grid">
-
-          <a href="https://blog.naver.com/mipoomdal/224171669955" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/1442b6726f.jpeg" alt="세종눈썹문신 탈각 과정 없고, 당일 세안 가능한 다이아페더링 기법 너무 자연스럽죠?" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2026.02.04</span>
-              <h3>세종눈썹문신 탈각 과정 없고, 당일 세안 가능한 다이아페더링 기법 너무 자연스럽죠?</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/224170693431" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/0e9c402539.jpeg" alt="세종눈썹문신 자연스럽게 잘하는 곳 미대출신 뷰티모후" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2026.02.03</span>
-              <h3>세종눈썹문신 자연스럽게 잘하는 곳 미대출신 뷰티모후</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/224174406004" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/c721ce2906.jpeg" alt="세종시입술문신 칙칙하고 어두운 입술을 워터풀시럽립 기법으로 밝고 화사하게 톤업" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2026.02.06</span>
-              <h3>세종시입술문신 칙칙하고 어두운 입술을 워터풀시럽립 기법으로 밝고 화사하게 톤업</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/224066205298" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/da5e1e1a8c.jpeg" alt="[공지] 세종눈썹문신 반영구 수강생 모집(정규반/단과반) 미대출신 원장 직강, 실무 중심 커리큘럼 공개!" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2025.11.06</span>
-              <h3>[공지] 세종눈썹문신 반영구 수강생 모집(정규반/단과반) 미대출신 원장 직강, 실무 중심 커리큘럼 공개!</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/224173138358" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/577a30e4d3.jpeg" alt="세종입술문신 통증없이 맑고 화사하게 바꾸는 워터풀시럽립 기법" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2026.02.05</span>
-              <h3>세종입술문신 통증없이 맑고 화사하게 바꾸는 워터풀시럽립 기법</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/223833877200" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/e4dba69dec.jpeg" alt="세종아이라인문신 미대출신 전문가의 맞춤형디자인" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2025.04.15</span>
-              <h3>세종아이라인문신 미대출신 전문가의 맞춤형디자인</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/223840696551" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/afe2193328.jpeg" alt="세종시입술문신 통증없이 잘하는 곳에서 입매교정으로 볼륨업" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2025.04.20</span>
-              <h3>세종시입술문신 통증없이 잘하는 곳에서 입매교정으로 볼륨업</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/223919652525" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/4dd512fa9d.jpeg" alt="세종시눈썹문신 남자 세종눈썹문신 뷰티모후에서 해결하세요" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2025.07.02</span>
-              <h3>세종시눈썹문신 남자 세종눈썹문신 뷰티모후에서 해결하세요</h3>
-            </div>
-          </a>
-
-          <a href="https://blog.naver.com/mipoomdal/224083585702" target="_blank" rel="noopener noreferrer" class="post-card reveal">
-            <div class="post-img">
-              <img src="images/c4d3592cb8.jpg" alt="세종시반영구수강 미대출신 대표원장 직강, 1인샵 창업까지 한 번에 준비하기" loading="lazy" decoding="async" />
-            </div>
-            <div class="post-info">
-              <span class="post-date">2025.11.21</span>
-              <h3>세종시반영구수강 미대출신 대표원장 직강, 1인샵 창업까지 한 번에 준비하기</h3>
-            </div>
-          </a>
+        <a href="https://blog.naver.com/mipoomdal/224180315732" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="https://blogthumb.pstatic.net/MjAyNjAyMTFfNCAg/MDAxNzcwNzk3ODMxMTc2.5AidX6lV-EgAXbtALZQEHH_Bitk-RX25cGQWmm_WpPog.Rxf5YCOaUAtiuEcpYBIZSbUmxl1ukzksDO1pTgFXjSgg.JPEG/KakaoTalk_Photo_2026-02-11-15-49-35_007.jpeg?type=s3" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.11</span><h3>눈썹 메이크업 그리기 힘드시죠? 세미아치 디자인으로 영해지는 마법 (ft. 고객님 찐 후기)</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224179263923" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="https://blogthumb.pstatic.net/MjAyNjAyMTBfNjkg/MDAxNzcwNzI4MDc5NzI0.z38g96y12eMQrQTcXaGsVoi-qemKyTj13Aihb46VuE4g.KcoIXGHDXsQ1jeXE7-6Fhch25kIWmXhbPOt7utSHgDog.JPEG/KakaoTalk_Photo_2026-02-10-21-38-20_007.jpeg?type=s3" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.10</span><h3>남자눈썹 처진눈썹도 자연스럽게, 다이아페더링 작업후기</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224177359141" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="https://blogthumb.pstatic.net/MjAyNjAyMDlfNCAg/MDAxNzcwNjE0MTc3OTEz.6SsFo60oM0B1r_BuPm3Cb6ibIw6qy6eXPmb7chKnS4wg.lQyij-hDqyYOwGGmuOh82rpIGLCcJuDsrL8j4WU5YSwg.JPEG/KakaoTalk_20260209_133727076_08.jpg?type=s3" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.09</span><h3>세종눈썹반영구 다이아페더링 워터풀시럽립 눈썹입술 세트시술 잔흔커버 입술톤업 후기</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224174406004" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="images/c721ce2906.jpeg" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.06</span><h3>세종시입술문신 칙칙하고 어두운 입술을 워터풀시럽립 기법으로 밝고 화사하게 톤업</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224173138358" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="images/577a30e4d3.jpeg" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.05</span><h3>세종입술문신 통증없이 맑고 화사하게 바꾸는 워터풀시럽립 기법</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224171669955" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="images/1442b6726f.jpeg" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.04</span><h3>세종눈썹문신 탈각 과정 없고, 당일 세안 가능한 다이아페더링 기법 너무 자연스럽죠?</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224170693431" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="images/0e9c402539.jpeg" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2026.02.03</span><h3>세종눈썹문신 자연스럽게 잘하는 곳 미대출신 뷰티모후</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224083585702" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="images/c4d3592cb8.jpg" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2025.11.21</span><h3>세종시반영구수강 미대출신 대표원장 직강, 1인샵 창업까지 한 번에 준비하기</h3></div>
+        </a>
+        <a href="https://blog.naver.com/mipoomdal/224066205298" target="_blank" rel="noopener noreferrer" class="post-card reveal">
+          <div class="post-img"><img src="images/da5e1e1a8c.jpeg" alt="" loading="lazy" decoding="async" /></div>
+          <div class="post-info"><span class="post-date">2025.11.06</span><h3>[공지] 세종눈썹문신 반영구 수강생 모집(정규반/단과반) 미대출신 원장 직강, 실무 중심 커리큘럼 공개!</h3></div>
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- Contact -->
   <section class="section contact" id="contact">
-    <div class="contact-bg">
-      <img src="images/da5e1e1a8c.jpeg" alt="" loading="lazy" decoding="async" />
-    </div>
+    <div class="contact-bg"><img src="images/da5e1e1a8c.jpeg" alt="" loading="lazy" decoding="async" /></div>
     <div class="section-inner">
       <div class="section-header">
         <p class="section-label">Reservation</p>
@@ -439,7 +531,7 @@
         <div class="section-divider"></div>
       </div>
       <div class="contact-info">
-        <div class="contact-item"><p class="ci-label">Location</p><p class="ci-value">세종특별자치시 다솜1로 21</p></div>
+        <div class="contact-item"><p class="ci-label">Location</p><p class="ci-value">세종특별자치시 다솜1로 21 상가 2층 242, 243호</p></div>
         <div class="contact-item"><p class="ci-label">Phone</p><p class="ci-value">010-7316-7783</p></div>
         <div class="contact-item"><p class="ci-label">Hours</p><p class="ci-value">AM 10:00 - PM 8:00</p></div>
       </div>
@@ -449,26 +541,70 @@
 
   <footer>
     <p>&copy; 2026 beauty mowho. All Rights Reserved.</p>
-    <p style="margin-top: 8px;">
-      <a href="https://blog.naver.com/mipoomdal" target="_blank" rel="noopener noreferrer">Blog</a>
-    </p>
+    <p style="margin-top: 8px;"><a href="https://blog.naver.com/mipoomdal" target="_blank" rel="noopener noreferrer">Blog</a></p>
   </footer>
 
   <script>
+    // Mobile menu
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobileMenu').classList.toggle('open', menuOpen);
+      const bar1 = document.getElementById('bar1');
+      const bar2 = document.getElementById('bar2');
+      const bar3 = document.getElementById('bar3');
+      if (menuOpen) {
+        bar1.style.transform = 'rotate(45deg) translateY(4px)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'rotate(-45deg) translateY(-4px)';
+        bar1.style.margin = bar3.style.margin = '0';
+        bar1.style.background = bar2.style.background = bar3.style.background = 'var(--text-primary)';
+      } else {
+        bar1.style.transform = 'none';
+        bar2.style.opacity = '1';
+        bar3.style.transform = 'none';
+        bar2.style.margin = '5px 0';
+        updateBarColors();
+      }
+    }
+    function closeMenu() {
+      menuOpen = false;
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('bar1').style.transform = 'none';
+      document.getElementById('bar2').style.opacity = '1';
+      document.getElementById('bar2').style.margin = '5px 0';
+      document.getElementById('bar3').style.transform = 'none';
+      updateBarColors();
+    }
+    function updateBarColors() {
+      const scrolled = window.scrollY > 80;
+      const color = scrolled ? 'var(--text-primary)' : '#fff';
+      document.getElementById('bar1').style.background = color;
+      document.getElementById('bar2').style.background = color;
+      document.getElementById('bar3').style.background = color;
+    }
+
+    // Header scroll
     const header = document.getElementById('header');
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
-        requestAnimationFrame(() => { header.classList.toggle('scrolled', window.scrollY > 80); ticking = false; });
+        requestAnimationFrame(() => {
+          header.classList.toggle('scrolled', window.scrollY > 80);
+          if (!menuOpen) updateBarColors();
+          ticking = false;
+        });
         ticking = true;
       }
     }, { passive: true });
 
+    // Reveal animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
@@ -476,6 +612,74 @@
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // Services tab switching
+    const servicesData = [
+      {
+        video: 'images/diamond-feathering-eyebrow.mp4',
+        headline: 'Diamond\nFeathering',
+        desc: '한 올 한 올 자연스러운 결을 살리는\n다이아페더링·콤보 눈썹 맞춤 디자인',
+        features: ['탈각 과정 없음', '당일 세안 가능', '1:1 맞춤 디자인'],
+      },
+      {
+        video: 'images/lip-touch-video.mp4',
+        videoStyle: 'object-position: 50% 70%',
+        headline: 'Waterful\nSyrup Lip',
+        desc: '워터풀시럽립 기법으로\n맑고 화사한 입술 톤업',
+        features: ['자연스러운 발색', '통증 최소화', '촉촉한 마무리'],
+      },
+      {
+        video: 'images/eyeliner-video.mp4',
+        headline: 'Natural\nEyeliner',
+        desc: '붓기·통증 없이\n청순하고 또렷한 눈매 완성',
+        features: ['무붓기 시술', '자연스러운 라인', '또렷한 눈매'],
+      },
+    ];
+
+    let currentService = 0;
+
+    function switchService(index) {
+      if (index === currentService) return;
+      currentService = index;
+      const data = servicesData[index];
+
+      // Update tabs
+      document.querySelectorAll('.services-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+      });
+
+      // Fade out
+      const detail = document.getElementById('services-detail');
+      const bg = document.getElementById('services-bg');
+      detail.style.opacity = '0';
+      detail.style.transform = 'translateY(20px)';
+      bg.style.opacity = '0';
+
+      setTimeout(() => {
+        // Update video
+        const video = document.getElementById('services-video');
+        video.src = data.video;
+        video.style.objectPosition = data.videoStyle || '';
+        video.load();
+        video.play();
+
+        // Update content
+        document.getElementById('services-headline').textContent = data.headline;
+        document.getElementById('services-desc').textContent = data.desc;
+        document.getElementById('services-num').textContent = String(index + 1).padStart(2, '0');
+
+        const featuresEl = document.getElementById('services-features');
+        featuresEl.innerHTML = data.features.map(f => '<span>' + f + '</span>').join('');
+
+        // Fade in
+        bg.style.opacity = '1';
+        detail.style.opacity = '1';
+        detail.style.transform = 'translateY(0)';
+      }, 400);
+    }
+
+    // Add transition to detail and bg
+    document.getElementById('services-detail').style.transition = 'opacity 0.5s var(--ease), transform 0.5s var(--ease)';
   </script>
 </body>
 </html>

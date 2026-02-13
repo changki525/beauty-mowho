@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Service {
@@ -46,6 +46,18 @@ const services: Service[] = [
 
 export default function Services() {
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const index = (e as CustomEvent).detail;
+      if (typeof index === 'number' && index >= 0 && index < services.length) {
+        setActive(index);
+      }
+    };
+    window.addEventListener('selectService', handler);
+    return () => window.removeEventListener('selectService', handler);
+  }, []);
+
   const current = services[active];
 
   return (
