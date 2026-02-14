@@ -1,16 +1,13 @@
 name: Deploy beauty-mowho
 
 on:
-  schedule:
-    - cron: '0 */6 * * *'  # 6시간마다 실행 (UTC 0,6,12,18시)
-  workflow_dispatch:        # 수동 실행 가능
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  crawl-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: blog-to-site
 
     steps:
       - name: Checkout
@@ -20,20 +17,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Crawl Naver blog
-        run: node crawl.js mipoomdal
-
-      - name: Generate website
-        run: node generate.js
+      - name: Build Next.js
+        run: npm run build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy output/ --project-name=beauty-mowho
-          workingDirectory: blog-to-site
+          command: pages deploy out/ --project-name=beauty-mowho
