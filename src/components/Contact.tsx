@@ -18,8 +18,8 @@ export default function Contact() {
       <div className="section-inner" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <div className="section-header">
-            <p className="section-label">Reservation</p>
-            <h2 className="section-title">Get In Touch</h2>
+            <p className="section-label">예약 · Reservation</p>
+            <h2 className="section-title">세종 반영구 화장 예약</h2>
             <div className="section-divider" />
           </div>
 

@@ -16,26 +16,26 @@ interface Category {
 const categories: Category[] = [
   {
     num: '01',
-    title: '콤보기법',
+    title: '콤보 눈썹문신',
     en: 'Combo Technique',
     image: '/images/combo-technique.jpeg',
-    desc: '자연눈썹과 메이크업의 장점을 결합한 복합 기법입니다.',
+    desc: '자연눈썹과 메이크업의 장점을 결합한 복합 반영구 눈썹 기법입니다.',
     detail: '앞머리는 자연스럽게, 꼬리는 또렷하게 입체감 있는 디자인',
   },
   {
     num: '02',
-    title: '다이아헤어기법',
-    en: 'Diamond Hair Technique',
+    title: '다이아페더링 눈썹',
+    en: 'Diamond Feathering',
     image: '/images/dia-hair-technique-new.jpeg',
-    desc: '다이아몬드 패턴으로 한 올 한 올 섬세하게 표현하는 프리미엄 헤어스트로크 기법입니다.',
+    desc: '다이아몬드 패턴으로 한 올 한 올 섬세하게 표현하는 프리미엄 반영구 눈썹 기법입니다.',
     detail: '실제 눈썹결처럼 자연스러운 결과를 만드는 시그니처 기법',
   },
   {
     num: '03',
-    title: '메이크업기법',
+    title: '메이크업 눈썹',
     en: 'Makeup Technique',
     image: '/images/makeup-technique.jpeg',
-    desc: '파우더를 바른 듯 은은하고 깔끔한 눈썹을 완성합니다.',
+    desc: '파우더를 바른 듯 은은하고 깔끔한 반영구 눈썹을 완성합니다.',
     detail: '매일 메이크업한 듯한 또렷하고 단정한 눈썹 표현',
   },
   {
@@ -43,8 +43,8 @@ const categories: Category[] = [
     title: '시술영상',
     en: 'Treatment Video',
     video: '/images/treatment-video.mp4',
-    desc: '실제 시술 과정을 영상으로 확인하실 수 있습니다.',
-    detail: '섬세하고 정확한 시술 과정을 직접 확인해보세요',
+    desc: '세종 눈썹문신 실제 시술 과정을 영상으로 확인하실 수 있습니다.',
+    detail: '섬세하고 정확한 반영구 시술 과정을 직접 확인해보세요',
   },
 ];
 
@@ -91,8 +91,8 @@ export default function EyebrowCategories() {
     <section className="section" id="eyebrow" style={{ background: 'var(--bg)' }}>
       <div className="section-inner">
         <div className="section-header">
-          <p className="section-label">Treatment Menu</p>
-          <h2 className="section-title">Treatment Guide</h2>
+          <p className="section-label">세종 반영구 시술 안내</p>
+          <h2 className="section-title">눈썹문신 시술 가이드</h2>
           <div className="section-divider" />
         </div>
 

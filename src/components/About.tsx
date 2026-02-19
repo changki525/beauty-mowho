@@ -20,6 +20,7 @@ export default function About() {
               loop
               muted
               playsInline
+              aria-label="세종 다이아페더링 눈썹 반영구 시술 영상"
               style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}
             />
           </motion.div>
@@ -33,9 +34,12 @@ export default function About() {
             <p style={{ fontSize: '0.65rem', letterSpacing: 5, color: 'var(--accent)', marginBottom: 20, fontWeight: 500, textTransform: 'uppercase' }}>
               Signature Technique
             </p>
-            <h2 style={{ fontFamily: 'var(--serif)', fontSize: '2.4rem', fontWeight: 300, letterSpacing: 2, marginBottom: 24, lineHeight: 1.3 }}>
+            <h2 style={{ fontFamily: 'var(--serif)', fontSize: '2.4rem', fontWeight: 300, letterSpacing: 2, marginBottom: 12, lineHeight: 1.3 }}>
               Diamond<br />Feathering
             </h2>
+            <p style={{ fontSize: '0.82rem', color: 'var(--accent)', marginBottom: 24, fontWeight: 400, letterSpacing: 1 }}>
+              세종 눈썹문신 · 다이아페더링 반영구
+            </p>
             <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 2, marginBottom: 16 }}>
               다이아페더링은 한 올 한 올 자연스러운 눈썹결을 그려내는 최신 반영구 기법입니다. 기존 엠보 기법과 달리 탈각 과정이 없고, 시술 당일 세안이 가능하여 일상생활에 지장이 없습니다.
             </p>

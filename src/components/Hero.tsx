@@ -13,20 +13,23 @@ export default function Hero() {
   return (
     <section style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden', background: 'var(--bg-dark)' }}>
       <div style={{ position: 'absolute', inset: 0 }}>
-        <img src="/images/hero-bg.jpeg" alt="beauty mowho" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.3)' }} />
+        <img src="/images/hero-bg.jpeg" alt="세종 눈썹문신 반영구 화장 전문 뷰티모후 beauty mowho" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.3)' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0)' }} />
       </div>
 
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}
         style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: '#fff', maxWidth: 800, padding: '0 24px' }}>
         <p style={{ fontSize: '0.7rem', letterSpacing: 6, textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 24 }}>
-          Semi-Permanent Makeup Studio
+          세종 반영구 화장 전문 스튜디오
         </p>
         <h1 style={{ fontFamily: 'var(--serif)', fontSize: 'clamp(3rem, 8vw, 6rem)', fontWeight: 300, letterSpacing: 8, lineHeight: 1.1, textTransform: 'uppercase', marginBottom: 24 }}>
           beauty mowho
         </h1>
-        <p style={{ fontSize: '0.95rem', fontWeight: 200, letterSpacing: 3, color: 'rgba(255,255,255,0.6)', marginBottom: 48 }}>
+        <p style={{ fontSize: '0.95rem', fontWeight: 200, letterSpacing: 3, color: 'rgba(255,255,255,0.6)', marginBottom: 12 }}>
           미대출신 원장의 섬세한 맞춤 디자인
+        </p>
+        <p style={{ fontSize: '0.78rem', fontWeight: 200, letterSpacing: 2, color: 'rgba(255,255,255,0.4)', marginBottom: 48 }}>
+          세종시 눈썹문신 · 입술문신 · 아이라인 반영구
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }} className="hero-buttons">
           {buttons.map((btn) => (
