@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: "미대출신 원장의 1:1 맞춤 디자인. 다이아페더링 눈썹, 워터풀시럽립 입술, 아이라인 시술.",
     type: "website",
     locale: "ko_KR",
-    url: "https://beauty-mowho-8xt.pages.dev/",
+    url: "https://beauty-mowho.com/",
     siteName: "beauty mowho",
   },
   twitter: {
@@ -58,7 +58,7 @@ export default function RootLayout({
               },
               "telephone": "010-7316-7783",
               "openingHours": "Mo-Su 10:00-20:00",
-              "url": "https://beauty-mowho-8xt.pages.dev/",
+              "url": "https://beauty-mowho.com/",
               "sameAs": [
                 "https://blog.naver.com/mipoomdal",
                 "https://www.instagram.com/p/Crx8J6xLEvP/"
