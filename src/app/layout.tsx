@@ -19,11 +19,20 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: "https://beauty-mowho.com/",
     siteName: "beauty mowho 뷰티모후",
+    images: [
+      {
+        url: "https://beauty-mowho.com/images/hero-bg.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "뷰티모후 - 세종 눈썹문신 반영구 화장 전문",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "세종 눈썹문신 · 반영구 화장 전문 | beauty mowho 뷰티모후",
     description: "세종시 눈썹문신 반영구 전문. 미대출신 원장 1:1 맞춤 디자인.",
+    images: ["https://beauty-mowho.com/images/hero-bg.jpeg"],
   },
   robots: {
     index: true,
@@ -66,6 +75,7 @@ export default function RootLayout({
               },
               "telephone": "010-7316-7783",
               "openingHours": "Mo-Su 10:00-20:00",
+              "image": "https://beauty-mowho.com/images/hero-bg.jpeg",
               "url": "https://beauty-mowho.com/",
               "priceRange": "$$",
               "hasOfferCatalog": {
